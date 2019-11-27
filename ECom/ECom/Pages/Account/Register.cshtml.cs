@@ -56,12 +56,12 @@ namespace ECom.Pages.Account
 
 
                     List<Claim> claims = new List<Claim> { dob, email, country, fullName };
-
+                    
+                    //we created claims, now we need to add all claims. Put all claims in a list and put that list in as a parameter in the AddClaimsAsync method.
+                    await _userManager.AddClaimsAsync(user, claims);
                     //be cautious of this line of code:
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    //we created claims, now we need to add all claims. Put all claims in a list and put that list in as a parameter in the AddClaimsAsync method.
-                    await _userManager.AddClaimsAsync(user, claims);
 
                     return RedirectToAction("Index", "Home");
                 }

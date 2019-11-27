@@ -30,12 +30,12 @@
                 <li class="navbar-item">
                     <a href="~/Shared/" class="nav-link">Cars</a>
                 </li>
-                <li class="navbar-item">
+                @*<li class="navbar-item">
                     <a href="~/Account/Login" class="nav-link">Login</a>
                 </li>
                 <li class="navbar-item">
                     <a href="~/Account/Register" class="nav-link">Register</a>
-                </li>
+                </li>*@
                 <li>
                     @if (SignInManager.IsSignedIn(User))
                     {
@@ -46,6 +46,8 @@
                     }
                     else
                     {
+                        <a href="~/Account/Login" class="nav-link">Login</a>
+                        <a href="~/Account/Register" class="nav-link">Register</a>
                         <p> WELCOME USER!</p>
                     }
                 </li>
