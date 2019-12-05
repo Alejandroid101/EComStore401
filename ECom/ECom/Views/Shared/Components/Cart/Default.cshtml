@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ECom.Models.Product>
+
+<div>
+    @foreach(var item in Model)
+    {
+        <h3> @item.Name</h3>
+        <p> @item.Image</p>
+        <p> @item.Price</p>
+        <hr/>
+    }
+</div>

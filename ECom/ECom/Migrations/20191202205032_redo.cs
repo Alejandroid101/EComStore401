@@ -1,11 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECom.Migrations.StoreDb
+namespace ECom.Migrations
 {
-    public partial class secondary : Migration
+    public partial class redo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Cart",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cart", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
@@ -25,6 +38,32 @@ namespace ECom.Migrations.StoreDb
                     table.PrimaryKey("PK_Products", x => x.ID);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CartItems",
+                columns: table => new
+                {
+                    CartId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItems", x => new { x.CartId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_CartItems_Cart_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Cart",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "ID", "Color", "Description", "Image", "Name", "Price", "Sku", "Year" },
@@ -41,10 +80,21 @@ namespace ECom.Migrations.StoreDb
                     { 9, "Light Grey", "The Audi R8 is a mid-engine, 2-seater sports car, which uses Audi's trademark quattro permanent all-wheel drive system. It was introduced by the German car manufacturer Audi AG in 2006. The car is exclusively designed, developed, and manufactured by Audi AG's private subsidiary company manufacturing high performance automotive parts, Audi Sport GmbH (formerly quattro GmbH), and is based on the Lamborghini Gallardo and presently the Huracán platform.", "/assets/audi.jpg", "Audi R8", 169900.00m, "JGNMHKTE", 2019 },
                     { 10, "Black", "The Bentley Bentayga is a mid-size, front-engine, all-wheel drive, five-door luxury crossover marketed by Bentley, beginning with model year 2016. Its body is manufactured at the Volkswagen Zwickau-Mosel plant, then painted by Paintbox Editions in Banbury, and finally assembled at the company's Crewe factory.", "/assets/bentley.jpg", "Bentley Bentayga", 165000.00m, "BGHVDPWO", 2019 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_ProductId",
+                table: "CartItems",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CartItems");
+
+            migrationBuilder.DropTable(
+                name: "Cart");
+
             migrationBuilder.DropTable(
                 name: "Products");
         }

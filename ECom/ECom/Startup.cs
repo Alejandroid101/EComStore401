@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ECom
 {
@@ -58,15 +59,22 @@ namespace ECom
             options.UseSqlServer(applicationConnectionString));
 
             services.AddScoped<IInventory, ProductService>();
+            services.AddScoped<ICartManager, CartService>();
 
             //Connect user to specific Database for information storage
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
+
+            //on authorization add policy which is 'Admin Only' policy, the 'Admin Only' policy is going to be based off the admin role.
+            services.AddAuthorization(options =>
+            options.AddPolicy("Admin Only", policy => policy.RequireRole(ApplicationRoles.Admin)));
+
+            services.AddScoped<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -84,6 +92,8 @@ namespace ECom
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 
             });
+
+            RoleInitializer.SeedData(serviceProvider);
         }
     }
 }

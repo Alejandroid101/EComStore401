@@ -15,6 +15,11 @@ namespace ECom.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CartItems>().HasKey(CartItems =>
+            new { CartItems.CartId, CartItems.ProductId });
+
+            
+
             modelBuilder.Entity<Product>().HasData(
                     new Product
                     //description taken from wikipedia, images taken from google images
@@ -114,7 +119,7 @@ namespace ECom.Data
                                 Description = "The Jaguar F-type is a quintessential sports car, with a head-turning design and high-octane performance. " +
                                 "This Jaguar two-seater takes form as either a sleek coupe or a stunning convertible. " +
                                 "Along with a snarling supercharged V-6, the 2020 F-type offers a more affordable turbocharged four-cylinder engine.",
-                              Image = "/assets/jag.jpg"
+                                Image = "/assets/jag.jpg"
 
                             },
                               new Product
@@ -127,7 +132,7 @@ namespace ECom.Data
                                   Price = 169900.00M,
                                   Description = "The Audi R8 is a mid-engine, 2-seater sports car, which uses Audi's trademark quattro permanent all-wheel drive system. It was introduced by the German car manufacturer Audi AG in 2006. " +
                                   "The car is exclusively designed, developed, and manufactured by Audi AG's private subsidiary company manufacturing high performance automotive parts, Audi Sport GmbH (formerly quattro GmbH), and is based on the Lamborghini Gallardo and presently the Huracán platform.",
-                              Image = "/assets/audi.jpg"
+                                  Image = "/assets/audi.jpg"
 
                               },
                                 new Product
@@ -140,11 +145,13 @@ namespace ECom.Data
                                     Price = 165000.00M,
                                     Description = "The Bentley Bentayga is a mid-size, front-engine, all-wheel drive, five-door luxury crossover marketed by Bentley, beginning with model year 2016. " +
                                     "Its body is manufactured at the Volkswagen Zwickau-Mosel plant, then painted by Paintbox Editions in Banbury, and finally assembled at the company's Crewe factory.",
-                              Image = "/assets/bentley.jpg"
+                                    Image = "/assets/bentley.jpg"
                                 }
                                 );
 
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
     }
 }

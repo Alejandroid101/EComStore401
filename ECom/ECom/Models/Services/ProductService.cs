@@ -19,12 +19,14 @@ namespace ECom.Models.Services
         {
             _context = context;
         }
+        //create
         public async Task CreateProductAsync(Product product)
         {
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
         }
 
+        //delete
         public async Task DeleteProductAsync(int id)
         {
             Product product = await GetProductByIDAsync(id);
@@ -32,6 +34,7 @@ namespace ECom.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        //read
         public async Task<Product> GetProductByIDAsync(int id) => await _context.Products.FirstOrDefaultAsync(pd1 => pd1.ID == id);
 
         public async Task<List<Product>> GetProductsAsync()
@@ -40,6 +43,7 @@ namespace ECom.Models.Services
             return products;
         }
 
+        //update
         public async Task UpdateProductAsync(Product product)
         {
             _context.Products.Update(product);

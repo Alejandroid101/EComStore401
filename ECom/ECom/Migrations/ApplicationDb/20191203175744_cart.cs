@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECom.Migrations.StoreDb
+namespace ECom.Migrations.ApplicationDb
 {
-    public partial class beforedeploy : Migration
+    public partial class cart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

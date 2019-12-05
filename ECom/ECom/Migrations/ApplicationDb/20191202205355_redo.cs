@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECom.Migrations
+namespace ECom.Migrations.ApplicationDb
 {
-    public partial class Initial2 : Migration
+    public partial class redo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -19,38 +19,39 @@
 <body>
 
     <div class="container">
-        <h4> @Html.DisplayFor(Product => Product.Product.Name)</h4>
-        <hr />
         <dl class="row">
             <dt>
                 <img src="@Html.DisplayFor(Product => Product.Product.Image)" />
             </dt>
             <dt class="col-sm-10">
-                @Html.DisplayFor(Product => Product.Product.Name)
+                Name: @Html.DisplayFor(Product => Product.Product.Name)
             </dt>
             <dt class="col-sm-10">
-                @Html.DisplayFor(Product => Product.Product.Color)
+                Sku: @Html.DisplayFor(Product => Product.Product.Sku)
+            </dt>
+            <dt class="col-sm-10">
+                Year: @Html.DisplayFor(Product => Product.Product.Year)
+            </dt>
+            <dt class="col-sm-10">
+                Color: @Html.DisplayFor(Product => Product.Product.Color)
             </dt>
             <dt class="col-sm-10" id="description-box">
-                @Html.DisplayFor(Product => Product.Product.Description)
+                Description: @Html.DisplayFor(Product => Product.Product.Description)
             </dt>
             <dt class="col-sm-10">
-                @Html.DisplayFor(Product => Product.Product.Sku)
-            </dt>
-            <dt class="col-sm-10">
-                @Html.DisplayFor(Product => Product.Product.Year)
-            </dt>
-            <dt class="col-sm-10">
-                $@Html.DisplayFor(Product => Product.Product.Price)
+                Price: $@Html.DisplayFor(Product => Product.Product.Price)
             </dt>
         </dl>
     </div>
     <div class="btn btn-primary">
         <a id="backbtn" asp-page="Index">Back to Products</a>
     </div>
-    <div class="btn btn-primary">
-        <a id="backbtn" asp-page="">Add to Cart</a>
-    </div>
+
+    <form method="post">
+        <button >Add to Cart</button>
+
+    </form>
+
 
 </body>
 </html>

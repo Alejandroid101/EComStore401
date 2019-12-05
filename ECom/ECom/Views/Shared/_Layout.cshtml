@@ -25,17 +25,20 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
                 <li class="navbar-item">
-                    <a href="~/Home" class="nav-link">Homepage</a>
+                    <a href="~/Home" class="nav-link">Home</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="~/Shared/" class="nav-link">Cars</a>
+                    <a href="~/Shared/" class="nav-link">Products</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/shoppingcart/cart" class="nav-link">Cart</a>
                 </li>
                 @*<li class="navbar-item">
-                    <a href="~/Account/Login" class="nav-link">Login</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="~/Account/Register" class="nav-link">Register</a>
-                </li>*@
+            <a href="~/Account/Login" class="nav-link">Login</a>
+        </li>
+        <li class="navbar-item">
+            <a href="~/Account/Register" class="nav-link">Register</a>
+        </li>*@
                 <li>
                     @if (SignInManager.IsSignedIn(User))
                     {
@@ -43,7 +46,10 @@
                         <form asp-page="/Account/Logout">
                             <button type="submit">LogOut</button>
                         </form>
+                        <a href="~/Admin" class="nav-link">Admin</a>
+
                     }
+
                     else
                     {
                         <a href="~/Account/Login" class="nav-link">Login</a>

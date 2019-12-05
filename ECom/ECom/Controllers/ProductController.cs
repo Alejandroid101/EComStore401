@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECom.Models;
 using ECom.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,15 +15,44 @@ namespace ECom.Controllers
     public class ProductController : Controller
     {
         private readonly IInventory _context;
+        private readonly ICartManager _cart;
 
-        public ProductController(IInventory product)
+        public ProductController(IInventory product, ICartManager cart)
         {
             _context = product;
+            _cart = cart;
         }
 
         public IActionResult Index()
         {
             return View();
         }
+
+
+        public IActionResult AddItemToCartAsync(CartItems item)
+        {
+            return View();
+        }
+
+ 
+
+
+
+
+
+
+
+        //public async Task<IActionResult> Delete(CartItems item)
+        //{
+        //    if (item == null)
+        //    {
+        //        return NotFound();
+        //    }
+            
+        //    //var test = await _context.GetProductByIDAsync(CartId, ProductId);
+        //    return View(test);
+        //}
+
+
     }
 }

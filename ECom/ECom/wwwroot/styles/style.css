@@ -22,3 +22,12 @@ a {
     margin: auto;
     width: 75%;
 }
+.manage{
+    color: black;
+}
+.managebox{
+    color:red;
+}
+#back {
+    color: white;
+}

@@ -12,7 +12,7 @@ namespace UnitTesting
     {
 
         /// <summary>
-        /// created unit tests for all getters and setters
+        /// created unit tests for getters and setters
         /// </summary>
         [Fact]
         public void CreateProduct()

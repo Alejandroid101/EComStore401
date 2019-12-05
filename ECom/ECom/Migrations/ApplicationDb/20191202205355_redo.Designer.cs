@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ECom.Migrations
+namespace ECom.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191127013252_nukingitagain")]
-    partial class nukingitagain
+    [Migration("20191202205355_redo")]
+    partial class redo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
