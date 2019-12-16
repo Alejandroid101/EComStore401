@@ -24,7 +24,7 @@ we can successfully link the item to the correct cart for the user. As for the o
 We will create an "order" table and an "orderItems" table to keep track of all the orders for a user and all the items they've ordered thus far.
 
 #### Vulnerability Report
-https://github.com/biniamsea2/EcomStore/blob/Development/vulnerability-report.md
+https://dev.azure.com/Biniam-Enrique401ECom/_git/EComStore?path=%2Fvulnerability-report.md&version=GBDevelopment&_a=contents
 
 #### Link to your deployed website.  
 https://ecom20191126124500.azurewebsites.net
